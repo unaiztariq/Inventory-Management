@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale Report</title>
+</head>
+<body>
+    <h1>Sale Report</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h3>{{error}}</h3>
+        <label>Date:</label>
+        <input type="month" name="salemonth">
+        
+        <button type="submit">Filter</button>
+    </form>
+   
+    {% if month %}
+        <h3>{{month}}</h3>
+    {% endif %}
+    <h3>Total Sales: {{ total }}</h3>
+        <ul>
+        {% for product in products %}        
+            <li>{{ product.name }}----{{ product.total }}</li>
+        {% endfor %}
+        </ul>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form  method="get">
+
+        
+        <h1>Your Expenses</h1>
+        <label for="sort">Sort:</label>
+        <select id="sort" name="sort">
+            <option value= "date">--Select an option--</option> 
+            <option value="-date">Newest</option>
+            <option value="date">Oldest</option>
+            <option value="-exp_amount">High</option>
+            <option value="exp_amount">Low</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+    <ul>
+    {%for i in object_list%}
+        <li><a href="/expense_tracker/edit/?id={{i.id}}">Edit</a>     <a href="#">Delete</a>--- {{i.exp_category}}   ---{{i.exp_amount}}</li>
+    {%endfor%}
+    </ul>
+    
+    <h3>Monthly Expense</h3>
+    <p>Total: {{total}}</p> 
+    
+
+    <form method="POST" action="{% url 'expense_tracker:logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

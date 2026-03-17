@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Product Detail</h1>
+    <h3>Name: {{ product.name }}</h3>
+    <p>Price: {{ product.price }}</p>
+    <p>Date: {{ product.created_at }}</p>
+    <p>Created by: {{ product.user }}</p>
+    <p>Stock: {{ product.stock }}</p>
+    <p>Last updated: {{product.updated_at}}</p>
+    <p>______________________________________</p><br>    
+    
+    <a href="{% url 'inventory:product_report' pk=product.id %}">Product Report</a><br>
+    <a href="{% url 'inventory:update' pk=product.id %}">Edit this Product</a><br>
+    <a href="{% url 'inventory:delete' pk=product.id %}">Delete this Product</a><br>
+    <a href="{% url 'inventory:purchase' pk=product.id %}">Add Purchases</a><br>
+    <a href="{% url 'inventory:create'%}">Create another product</a><br>
+</body>
+</html>

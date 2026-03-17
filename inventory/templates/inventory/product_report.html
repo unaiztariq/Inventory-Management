@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{product.name}}</h1>
+    <h3>Purchased: {{purchased}}</h3>
+    <h3>Sold: {{sold}}</h3>
+    <h3>Remaining: {{remaining}}</h3>
+    <a href="{% url 'inventory:saleCreate' pk=product.id%}">Back to Product</a><br>
+</body>
+</html>

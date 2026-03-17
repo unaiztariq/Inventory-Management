@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Do purchase</h1>
+    <form method="post">
+        {% csrf_token %}
+    
+        <select id="product" name="product">
+            <option value= "">--Select your Product--</option> 
+            {%for product in products %}
+                <option value="{{product.id}}">{{product.name}}</option>
+            {%endfor%}
+        </select>
+            
+            <p>{{form.as_p}}</p>
+        
+        <button type="submit">Purchase</button>
+    </form>
+
+    
+    
+    
+</body>
+</html>

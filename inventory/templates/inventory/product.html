@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    
+    <div style="display: flex; gap: 10px;">
+        <h3>Total Products</h3>
+        <h3>Total Purchases</h3>
+        <h3>Total Sales</h3>
+        <h3>Total Stock value</h3>
+    </div>
+
+    <div style="display: flex; gap: 10px;">
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{total_products}}</h3>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{total_purchases}}</h3>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{total_sales}}</h3>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{total_stocks}}</h3>
+    </div><br>
+    <a href="{% url 'inventory:sale_report'%}">Sales Report</a><br>
+    <a href="{% url 'inventory:create'%}">Create a product</a><br><br>
+
+    <form method="POST" action="{% url 'inventory:logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+    </form>
+
+    <h2>Products: </h2>
+    
+    <form action="" method="get">
+    <label for="">Show by: </label>
+    <select name="sort" id="">
+        <option value="-updated_at">Select your Option</option> 
+        <option value="-updated_at">Newest</option>
+        <option value="updated_at">Oldest</option>
+        <option value="-price">Highest Price</option>
+        <option value="price">Lowest Price</option>
+        <select name="sort" >
+    </select>
+    <button type="submit">Sort</button>
+    </form>
+    <ul>
+        {% for i in product_list%}
+        <li><a href="{% url 'inventory:saleCreate' pk=i.id %}">{{i.name}}---{{i.price}}</a>  Created by {{i.user}}</li>
+        {%endfor%}
+    </ul>
+    
+</body>
+</html>
